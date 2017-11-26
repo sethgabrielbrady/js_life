@@ -1,5 +1,5 @@
 const MoveDist = 10;
-const MoveSpeed = 50;
+const MoveSpeed = 100;
 
 let ball = document.getElementById("ball");
 let yPos = document.getElementById("yPos");
@@ -34,28 +34,28 @@ let startFunction = function(){
       }else{
         ballLeft = ballLeft - MoveDist;
       }
-      ball.setAttribute("style","left:" + (ballLeft) + "px; top:"+ ballTop+"px;");
+      ball.setAttribute("style","left:" + (ballLeft) + "px; top:"+ ballTop+"px; border-left:4px solid yellow;");
     }else if (rand === 2){
       if (ballLeft >= w - 50){
         ballLeft = ballLeft - MoveDist;
       }else{
         ballLeft = ballLeft + MoveDist;
       }
-      ball.setAttribute("style","left:" + (ballLeft) + "px; top:"+ ballTop+"px;");
+      ball.setAttribute("style","left:" + (ballLeft) + "px; top:"+ ballTop+"px; border-right:4px solid yellow;");
     }else if (rand === 3){
       if (ballTop >= h - 50){
         ballTop = ballTop - MoveDist;
       }else {
         ballTop = ballTop + MoveDist;
       }
-      ball.setAttribute("style","top:" + (ballTop) + "px; left:"+ ballLeft+"px;");
+      ball.setAttribute("style","top:" + (ballTop) + "px; left:"+ ballLeft+"px; border-bottom:4px solid yellow;");
     }else if (rand === 4){
       if (ballTop <= 50){
         ballTop = ballTop + MoveDist;
       }else{
         ballTop = ballTop - MoveDist;
       }
-      ball.setAttribute("style","top:"+ (ballTop) + "px; left:"+ ballLeft+"px;");
+      ball.setAttribute("style","top:"+ (ballTop) + "px; left:"+ ballLeft+"px; border-top:4px solid yellow;");
     }
   }, MoveSpeed);
 };
