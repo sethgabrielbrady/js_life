@@ -5,49 +5,32 @@ let ballTop = viewportOffset.top;
 let ballLeft = viewportOffset.left;
 let w = window.innerWidth;
 let h = window.innerHeight;
-let moveSpeed = 100;
-let rand = function(){
-  return Math.floor((Math.random() * 4) + 1);
-};
+let moveSpeed = 50;
+
+
 
 let startFunction = function(){
 
   setInterval(function(){
+    let rand = Math.floor((Math.random() * 4) + 1);
+    // console.log(rand);
     console.log("x:", + ballTop + "y:" + ballLeft);
-    rand();
-
-    if (rand() === 1){
+    if (rand === 1){
       console.log("left");
       ballLeft = ballLeft - moveDist;
-      if(ballLeft <= 0){
-        rand();
-      } else {
-        ball.setAttribute("style","left:" + (ballLeft) + "px; top:"+ ballTop+"px;");
-      }
-    }else if (rand() === 2){
+      ball.setAttribute("style","left:" + (ballLeft) + "px; top:"+ ballTop+"px;");
+    }else if (rand === 2){
       console.log("right");
       ballLeft = ballLeft + moveDist;
-      if(ballLeft >= w){
-        rand();
-      } else {
-        ball.setAttribute("style","left:" + (ballLeft) + "px; top:"+ ballTop+"px;");
-      }
-    }else if (rand() === 3){
+      ball.setAttribute("style","left:" + (ballLeft) + "px; top:"+ ballTop+"px;");
+    }else if (rand === 3){
       console.log("down");
       ballTop = ballTop + moveDist;
-      if(ballTop >= h){
-        rand();
-      } else {
-        ball.setAttribute("style","top:" + (ballTop) + "px; left:"+ ballLeft+"px;");
-      }
-    }else if (rand() === 4){
+      ball.setAttribute("style","top:" + (ballTop) + "px; left:"+ ballLeft+"px;");
+    }else if (rand === 4){
       console.log("up");
       ballTop = ballTop - moveDist;
-      if(ballTop <= 0){
-        rand();
-      } else {
-        ball.setAttribute("style","top:"+ (ballTop) + "px; left:"+ ballLeft+"px;");
-      }
+      ball.setAttribute("style","top:"+ (ballTop) + "px; left:"+ ballLeft+"px;");
     }
   }, moveSpeed);
 };
