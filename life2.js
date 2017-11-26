@@ -1,4 +1,4 @@
-const MoveDist = 20;
+const MoveDist = 10;
 const MoveSpeed = 50;
 
 let ball = document.getElementById("ball");
@@ -69,5 +69,9 @@ let startFunction = function(){
 // Step 2
 // Notes- the bugs should be turned into objects with constructor
 // (X) Add boundaeries
-// (:) Add the ability for multiple "bugs"
-// (:) Add hit detection on the bugs
+// (:) Add "food" and a sense for the bug that increases it chances of finding it
+// (:) If the bug doesnt find it in an alloted time, it dies.
+
+// Step 3
+// ADding random elements that affect time, move speed, etc.
+//Adding more than one bug at a time
