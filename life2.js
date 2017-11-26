@@ -1,18 +1,18 @@
+const MoveDist = 20;
+const MoveSpeed = 50;
+
 let ball = document.getElementById("ball");
 let yPos = document.getElementById("yPos");
 let xPos = document.getElementById("xPos");
 let windowDim = document.getElementById("windowDim");
-
-let moveDist = 20;
 let viewportOffset = ball.getBoundingClientRect();
 let ballTop = viewportOffset.top;
 let ballLeft = viewportOffset.left;
 let w = window.innerWidth;
 let h = window.innerHeight;
-let moveSpeed = 50;
 
+windowDim.innerHTML = "Width:  " + w +"  Height:  " + h;
 
-windowDim.innerHTML = "Width:  " +w+"  Height:  " + h;
 let startFunction = function(){
 
   setInterval(function(){
@@ -20,6 +20,7 @@ let startFunction = function(){
     yPos.innerHTML = "Y pos: " + ballLeft;
     xPos.innerHTML = "X pos: " + ballTop;
 
+    //will stop everything if the bug manages to go beyond the boundaries
     if (ballLeft >= w || ballLeft <= 0){
       return 0;
     }
@@ -27,53 +28,46 @@ let startFunction = function(){
       return 0;
     }
 
-
-    // console.log(rand);
-    console.log("x:", + ballTop + "y:" + ballLeft);
     if (rand === 1){
-      console.log("left");
       if (ballLeft <= 50){
-        ballLeft = ballLeft + moveDist;
+        ballLeft = ballLeft + MoveDist;
       }else{
-        ballLeft = ballLeft - moveDist;
+        ballLeft = ballLeft - MoveDist;
       }
       ball.setAttribute("style","left:" + (ballLeft) + "px; top:"+ ballTop+"px;");
     }else if (rand === 2){
-      console.log("right");
       if (ballLeft >= w - 50){
-        ballLeft = ballLeft - moveDist;
+        ballLeft = ballLeft - MoveDist;
       }else{
-        ballLeft = ballLeft + moveDist;
+        ballLeft = ballLeft + MoveDist;
       }
       ball.setAttribute("style","left:" + (ballLeft) + "px; top:"+ ballTop+"px;");
     }else if (rand === 3){
-      console.log("down");
       if (ballTop >= h - 50){
-        ballTop = ballTop - moveDist;
+        ballTop = ballTop - MoveDist;
       }else {
-        ballTop = ballTop + moveDist;
+        ballTop = ballTop + MoveDist;
       }
       ball.setAttribute("style","top:" + (ballTop) + "px; left:"+ ballLeft+"px;");
     }else if (rand === 4){
-      console.log("up");
       if (ballTop <= 50){
-        ballTop = ballTop + moveDist;
+        ballTop = ballTop + MoveDist;
       }else{
-        ballTop = ballTop - moveDist;
+        ballTop = ballTop - MoveDist;
       }
       ball.setAttribute("style","top:"+ (ballTop) + "px; left:"+ ballLeft+"px;");
     }
-  }, moveSpeed);
+  }, MoveSpeed);
 };
 
 
 // Step 1 -COMPLETE
-// : Get the current coordinates of the ball.
-// : Move the ball into a random spot based on the its current position
-// : Do this every 2 seconds
+// (X) Get the current coordinates of the ball.
+// (X) Move the ball into a random spot based on the its current position
+// (X) Do this every 2 seconds
 
 // Step 2
 // Notes- the bugs should be turned into objects with constructor
-// : Add boundaeries
-// : Add the ability for multiple "bugs"
-// : Add hit detection on the bugs
+// (X) Add boundaeries
+// (:) Add the ability for multiple "bugs"
+// (:) Add hit detection on the bugs
