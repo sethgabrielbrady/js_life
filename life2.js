@@ -13,10 +13,16 @@ let h = window.innerHeight;
 
 windowDim.innerHTML = "Width:  " + w +"  Height:  " + h;
 
+function Bug (type){
+  this.type = type;
+}
+var spaceBug = new Bug("Space Bug");
+console.log(spaceBug.type);
+
 let startFunction = function(){
 
   setInterval(function(){
-    let rand = Math.floor((Math.random() * 4) + 1);
+    let rngMove = Math.floor((Math.random() * 4) + 1);
     yPos.innerHTML = "Y pos: " + bugLeft;
     xPos.innerHTML = "X pos: " + bugTop;
 
@@ -29,28 +35,28 @@ let startFunction = function(){
     }
 
     //convert this to a switch statement
-    if (rand === 1){
+    if (rngMove === 1){
       if (bugLeft <= 50){
         bugLeft = bugLeft + MoveDist;
       }else{
         bugLeft = bugLeft - MoveDist;
       }
       bug.setAttribute("style","left:" + (bugLeft) + "px; top:"+ bugTop+"px; border-left:4px solid yellow;");
-    }else if (rand === 2){
+    }else if (rngMove === 2){
       if (bugLeft >= w - 50){
         bugLeft = bugLeft - MoveDist;
       }else{
         bugLeft = bugLeft + MoveDist;
       }
       bug.setAttribute("style","left:" + (bugLeft) + "px; top:"+ bugTop+"px; border-right:4px solid yellow;");
-    }else if (rand === 3){
+    }else if (rngMove === 3){
       if (bugTop >= h - 50){
         bugTop = bugTop - MoveDist;
       }else {
         bugTop = bugTop + MoveDist;
       }
       bug.setAttribute("style","top:" + (bugTop) + "px; left:"+ bugLeft+"px; border-bottom:4px solid yellow;");
-    }else if (rand === 4){
+    }else if (rngMove === 4){
       if (bugTop <= 50){
         bugTop = bugTop + MoveDist;
       }else{
@@ -62,12 +68,16 @@ let startFunction = function(){
 };
 
 
-// Step 2
-// Notes- the bugs should be turned into objects with constructor
+
+
+
+
 
 // (:) Add "food" and a sense for the bug that increases it chances of finding it
 // (:) Add a life timer to the bug. Food will increase the life(time) of the bug.
 
-// Step 3
-// ADding random elements that affect time, move speed, etc.
-//Adding more than one bug at a time
+// TODO
+// add rngMoveom elements that affect time, move speed, etc.
+// add more than one bug at a time
+// Make rngMove out of 100(or more) and divide by 4 to allow for more granularity and changes.
+// -- maybe add 8 way direction rather than just 4 way
