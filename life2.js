@@ -27,7 +27,7 @@ function Bugg (type){
  * @param  {Integer} number [description]
  * @return {[Integer}       [description]
  */
-function rngAny(number){
+function rngControl(number){
   let newNum = Math.floor((Math.random() * number) + 1);
   return newNum;
 }
@@ -40,12 +40,13 @@ function startFunction(){
 
   setInterval(function(){
 
-    let rngMove = rngAny(4);
+    let rngMove = rngControl(4);
 
     yPos.innerHTML = "Y pos: " + buggLeft;
     xPos.innerHTML = "X pos: " + buggTop;
 
     //will stop everything if the bugg manages to go beyond the boundaries
+    //may want to expand this and move into a fucntion
     if (buggLeft >= w || buggLeft <= 0){
       return 0;
     }
