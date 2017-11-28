@@ -89,15 +89,15 @@ function startFunction(){
 
 
 
+// NEXT
+// add two buggs to the window
+// make movespeed a part of each buggs object so that dif buggs can have variable speed
 
-
-
-
-// (:) Add "food" and a sense for the bugg that increases it chances of finding it
-// (:) Add a life timer to the bugg. Food will increase the life(time) of the bugg.
 
 // TODO
-// add rngMoveom elements that affect time, move speed, etc.
+// add elements that affect time, move speed, etc.
 // add more than one bugg at a time
 // Make rngMove out of 100(or more) and divide by 4 to allow for more granularity and changes.
 // -- maybe add 8 way direction rather than just 4 way
+//Add "food" and a sense for the bugg that increases it chances of finding it
+//Add a life timer to the bugg. Food will increase the life(time) of the bugg.
