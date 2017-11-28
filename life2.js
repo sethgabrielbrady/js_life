@@ -1,71 +1,90 @@
 const MoveDist = 10;
 const MoveSpeed = 200;
 
-let bug = document.getElementById("bug");
+let bugg = document.getElementById("bugg");
 let yPos = document.getElementById("yPos");
 let xPos = document.getElementById("xPos");
 let windowDim = document.getElementById("windowDim");
-let viewportOffset = bug.getBoundingClientRect();
-let bugTop = viewportOffset.top;
-let bugLeft = viewportOffset.left;
+let viewportOffset = bugg.getBoundingClientRect();
+let buggTop = viewportOffset.top;
+let buggLeft = viewportOffset.left;
 let w = window.innerWidth;
 let h = window.innerHeight;
 
 windowDim.innerHTML = "Width:  " + w +"  Height:  " + h;
 
-function Bug (type){
+/**
+ * Constructor for Bugg
+ * @param       {String} type ATM, simply a user defined type-makes no dif
+ * @constructor
+ */
+function Bugg (type){
   this.type = type;
 }
-var spaceBug = new Bug("Space Bug");
-console.log(spaceBug.type);
 
-let startFunction = function(){
+/**
+ * [Random Generator function for various]
+ * @param  {Integer} number [description]
+ * @return {[Integer}       [description]
+ */
+function rngAny(number){
+  let newNum = Math.floor((Math.random() * number) + 1);
+  return newNum;
+}
+
+/**
+ * starts the program on button press
+ * @return {null} [description]
+ */
+function startFunction(){
 
   setInterval(function(){
-    let rngMove = Math.floor((Math.random() * 4) + 1);
-    yPos.innerHTML = "Y pos: " + bugLeft;
-    xPos.innerHTML = "X pos: " + bugTop;
 
-    //will stop everything if the bug manages to go beyond the boundaries
-    if (bugLeft >= w || bugLeft <= 0){
+    let rngMove = rngAny(4);
+
+    yPos.innerHTML = "Y pos: " + buggLeft;
+    xPos.innerHTML = "X pos: " + buggTop;
+
+    //will stop everything if the bugg manages to go beyond the boundaries
+    if (buggLeft >= w || buggLeft <= 0){
       return 0;
     }
-    if (bugTop >= h || bugTop <= 0){
+    if (buggTop >= h || buggTop <= 0){
       return 0;
     }
 
     //convert this to a switch statement
     if (rngMove === 1){
-      if (bugLeft <= 50){
-        bugLeft = bugLeft + MoveDist;
+      if (buggLeft <= 50){
+        buggLeft = buggLeft + MoveDist;
       }else{
-        bugLeft = bugLeft - MoveDist;
+        buggLeft = buggLeft - MoveDist;
       }
-      bug.setAttribute("style","left:" + (bugLeft) + "px; top:"+ bugTop+"px; border-left:4px solid yellow;");
+      bugg.setAttribute("style","left:" + (buggLeft) + "px; top:"+ buggTop+"px; border-left:4px solid yellow;");
     }else if (rngMove === 2){
-      if (bugLeft >= w - 50){
-        bugLeft = bugLeft - MoveDist;
+      if (buggLeft >= w - 50){
+        buggLeft = buggLeft - MoveDist;
       }else{
-        bugLeft = bugLeft + MoveDist;
+        buggLeft = buggLeft + MoveDist;
       }
-      bug.setAttribute("style","left:" + (bugLeft) + "px; top:"+ bugTop+"px; border-right:4px solid yellow;");
+      bugg.setAttribute("style","left:" + (buggLeft) + "px; top:"+ buggTop+"px; border-right:4px solid yellow;");
     }else if (rngMove === 3){
-      if (bugTop >= h - 50){
-        bugTop = bugTop - MoveDist;
+      if (buggTop >= h - 50){
+        buggTop = buggTop - MoveDist;
       }else {
-        bugTop = bugTop + MoveDist;
+        buggTop = buggTop + MoveDist;
       }
-      bug.setAttribute("style","top:" + (bugTop) + "px; left:"+ bugLeft+"px; border-bottom:4px solid yellow;");
+      bugg.setAttribute("style","top:" + (buggTop) + "px; left:"+ buggLeft+"px; border-bottom:4px solid yellow;");
     }else if (rngMove === 4){
-      if (bugTop <= 50){
-        bugTop = bugTop + MoveDist;
+      if (buggTop <= 50){
+        buggTop = buggTop + MoveDist;
       }else{
-        bugTop = bugTop - MoveDist;
+        buggTop = buggTop - MoveDist;
       }
-      bug.setAttribute("style","top:"+ (bugTop) + "px; left:"+ bugLeft+"px; border-top:4px solid yellow;");
+      bugg.setAttribute("style","top:"+ (buggTop) + "px; left:"+ buggLeft+"px; border-top:4px solid yellow;");
     }
   }, MoveSpeed);
-};
+}
 
 
 
@@ -73,11 +92,11 @@ let startFunction = function(){
 
 
 
-// (:) Add "food" and a sense for the bug that increases it chances of finding it
-// (:) Add a life timer to the bug. Food will increase the life(time) of the bug.
+// (:) Add "food" and a sense for the bugg that increases it chances of finding it
+// (:) Add a life timer to the bugg. Food will increase the life(time) of the bugg.
 
 // TODO
 // add rngMoveom elements that affect time, move speed, etc.
-// add more than one bug at a time
+// add more than one bugg at a time
 // Make rngMove out of 100(or more) and divide by 4 to allow for more granularity and changes.
 // -- maybe add 8 way direction rather than just 4 way
