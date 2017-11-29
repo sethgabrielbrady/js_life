@@ -10,6 +10,7 @@ let buggTop = viewportOffset.top;
 let buggLeft = viewportOffset.left;
 let w = window.innerWidth;
 let h = window.innerHeight;
+let buggCount = 0;
 
 windowDim.innerHTML = "Width:  " + w +"  Height:  " + h;
 
@@ -19,7 +20,12 @@ windowDim.innerHTML = "Width:  " + w +"  Height:  " + h;
  * @constructor
  */
 function Bugg (type){
+  let rngSpeedModifier = rngControl(10);
+  buggCount = buggCount + 1;
+
   this.type = type;
+  this.number = buggCount;
+  this.buggSpeed = MoveSpeed * (rngSpeedModifier/10);
 }
 
 /**
@@ -37,7 +43,7 @@ function rngControl(number){
  * @return {null} [description]
  */
 function startFunction(){
-
+//this will need to be called insde the bugg constructor, I think...
   setInterval(function(){
 
     let rngMove = rngControl(4);
