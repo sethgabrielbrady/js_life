@@ -12,6 +12,7 @@ let w = window.innerWidth;
 let h = window.innerHeight;
 let buggCount = 0;
 let startCount = 0;
+let buggyCount = 0;
 
 windowDim.innerHTML = "Width:  " + w +"  Height:  " + h;
 
@@ -21,13 +22,30 @@ windowDim.innerHTML = "Width:  " + w +"  Height:  " + h;
  * @constructor
  */
 function Bugg (name){
-  let rngSpeedModifier = rngControl(10);
-  buggCount = buggCount + 1;
+  buggyCount = buggyCount + 1;
+  let rngSpeedModifier;
+  let rngX;
+  let rngy;
+  console.log(buggyCount);
+  if (buggyCount > 1 ||  buggyCount < 1){
+    console.log("Youve already made this bug");
+  }else{
+    rngX = rngControl(w);
+    rngY = rngControl(h);
+    rngSpeedModifier = rngControl(10);
+    buggCount = buggCount + 1;
+    bugg.setAttribute("style", "top:"+rngY+"; left:"+rngX+";");
+  }
 
   this.name = name;
   this.number = buggCount;
-  this.buggSpeed = MoveSpeed * (rngSpeedModifier/10);
+  this.buggSpeed = BaseSpeed * (rngSpeedModifier/10);
+  this.startXY = [rngX, rngY];
+  this.stats = name +'s stats are: Speed: ['+ this.buggSpeed +'], ID:['+ this.number+'], XY POS: ['+ this.startXY + ']';
+  console.log(this.stats);
 }
+
+let speedy = new Bugg("Speedy");
 
 /**
  * [Random Generator function for various]
@@ -45,11 +63,8 @@ function rngControl(number){
  */
 function startFunction(){
   startCount = startCount + 1;
-  let rngX = rngControl(100);
-  let rngY = rngControl(100);
-
-  
   let moveSpeed = BaseSpeed;
+
   //this should generate buggs based on buggCount
      // another function will need to be made that iterates through buggcCount
   //there, each bugg should get a random position on the screen based on
@@ -58,7 +73,6 @@ function startFunction(){
   if (startCount > 1 ||  startCount <1){
     console.log("You've already started.");
   }else{
-    // startCount = startCount + 1;
     setInterval(function(){
       let rngMove = rngControl(4);
 
@@ -106,7 +120,6 @@ function startFunction(){
 
     }, moveSpeed);
   }
-
 }
 
 
