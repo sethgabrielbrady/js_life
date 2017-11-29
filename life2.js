@@ -1,5 +1,5 @@
 const MoveDist = 10;
-const MoveSpeed = 200;
+const BaseSpeed = 200;
 
 let bugg = document.getElementById("bugg");
 let yPos = document.getElementById("yPos");
@@ -11,6 +11,7 @@ let buggLeft = viewportOffset.left;
 let w = window.innerWidth;
 let h = window.innerHeight;
 let buggCount = 0;
+let startCount = 0;
 
 windowDim.innerHTML = "Width:  " + w +"  Height:  " + h;
 
@@ -19,11 +20,11 @@ windowDim.innerHTML = "Width:  " + w +"  Height:  " + h;
  * @param       {String} type ATM, simply a user defined type-makes no dif
  * @constructor
  */
-function Bugg (type){
+function Bugg (name){
   let rngSpeedModifier = rngControl(10);
   buggCount = buggCount + 1;
 
-  this.type = type;
+  this.name = name;
   this.number = buggCount;
   this.buggSpeed = MoveSpeed * (rngSpeedModifier/10);
 }
@@ -43,54 +44,69 @@ function rngControl(number){
  * @return {null} [description]
  */
 function startFunction(){
-//this will need to be called insde the bugg constructor, I think...
-  setInterval(function(){
+  startCount = startCount + 1;
+  let rngX = rngControl(100);
+  let rngY = rngControl(100);
 
-    let rngMove = rngControl(4);
+  
+  let moveSpeed = BaseSpeed;
+  //this should generate buggs based on buggCount
+     // another function will need to be made that iterates through buggcCount
+  //there, each bugg should get a random position on the screen based on
+  // window dimensions
 
-    yPos.innerHTML = "Y pos: " + buggLeft;
-    xPos.innerHTML = "X pos: " + buggTop;
+  if (startCount > 1 ||  startCount <1){
+    console.log("You've already started.");
+  }else{
+    // startCount = startCount + 1;
+    setInterval(function(){
+      let rngMove = rngControl(4);
 
-    //will stop everything if the bugg manages to go beyond the boundaries
-    //may want to expand this and move into a fucntion
-    if (buggLeft >= w || buggLeft <= 0){
-      return 0;
-    }
-    if (buggTop >= h || buggTop <= 0){
-      return 0;
-    }
+      yPos.innerHTML = "Y pos: " + buggLeft;
+      xPos.innerHTML = "X pos: " + buggTop;
 
-    //convert this to a switch statement
-    if (rngMove === 1){
-      if (buggLeft <= 50){
-        buggLeft = buggLeft + MoveDist;
-      }else{
-        buggLeft = buggLeft - MoveDist;
+      //will stop everything if the bugg manages to go beyond the boundaries
+      //may want to expand this and move into a fucntion
+      if (buggLeft >= w || buggLeft <= 0){
+        return 0;
       }
-      bugg.setAttribute("style","left:" + (buggLeft) + "px; top:"+ buggTop+"px; border-left:4px solid yellow;");
-    }else if (rngMove === 2){
-      if (buggLeft >= w - 50){
-        buggLeft = buggLeft - MoveDist;
-      }else{
-        buggLeft = buggLeft + MoveDist;
+      if (buggTop >= h || buggTop <= 0){
+        return 0;
       }
-      bugg.setAttribute("style","left:" + (buggLeft) + "px; top:"+ buggTop+"px; border-right:4px solid yellow;");
-    }else if (rngMove === 3){
-      if (buggTop >= h - 50){
-        buggTop = buggTop - MoveDist;
-      }else {
-        buggTop = buggTop + MoveDist;
+      //convert this to a switch statement
+      if (rngMove === 1){
+        if (buggLeft <= 50){
+          buggLeft = buggLeft + MoveDist;
+        }else{
+          buggLeft = buggLeft - MoveDist;
+        }
+        bugg.setAttribute("style","left:" + (buggLeft) + "px; top:"+ buggTop+"px; border-left:4px solid yellow;");
+      }else if (rngMove === 2){
+        if (buggLeft >= w - 50){
+          buggLeft = buggLeft - MoveDist;
+        }else{
+          buggLeft = buggLeft + MoveDist;
+        }
+        bugg.setAttribute("style","left:" + (buggLeft) + "px; top:"+ buggTop+"px; border-right:4px solid yellow;");
+      }else if (rngMove === 3){
+        if (buggTop >= h - 50){
+          buggTop = buggTop - MoveDist;
+        }else {
+          buggTop = buggTop + MoveDist;
+        }
+        bugg.setAttribute("style","top:" + (buggTop) + "px; left:"+ buggLeft+"px; border-bottom:4px solid yellow;");
+      }else if (rngMove === 4){
+        if (buggTop <= 50){
+          buggTop = buggTop + MoveDist;
+        }else{
+          buggTop = buggTop - MoveDist;
+        }
+        bugg.setAttribute("style","top:"+ (buggTop) + "px; left:"+ buggLeft+"px; border-top:4px solid yellow;");
       }
-      bugg.setAttribute("style","top:" + (buggTop) + "px; left:"+ buggLeft+"px; border-bottom:4px solid yellow;");
-    }else if (rngMove === 4){
-      if (buggTop <= 50){
-        buggTop = buggTop + MoveDist;
-      }else{
-        buggTop = buggTop - MoveDist;
-      }
-      bugg.setAttribute("style","top:"+ (buggTop) + "px; left:"+ buggLeft+"px; border-top:4px solid yellow;");
-    }
-  }, MoveSpeed);
+
+    }, moveSpeed);
+  }
+
 }
 
 
