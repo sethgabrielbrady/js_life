@@ -14,7 +14,7 @@ let buggCount = 0;
 let startCount = 0;
 let buggyCount = 0;
 
-bugg.setAttribute('style', 'background-color:#052428;')
+bugg.setAttribute('style', 'background-color:#052428;');//hides bugg initially
 windowDim.innerHTML = "Width:  " + x +"  Height:  " + y;
 
 //Bugg Constuctor
@@ -23,7 +23,7 @@ function Bugg (name){
   let rngSpeedModifier;
   let rngX;
   let rngy;
-  console.log(buggyCount);
+
   if (buggyCount > 1 ||  buggyCount < 1){
     console.log("Youve already made this bug");
   }else{
@@ -51,7 +51,6 @@ function rngControl(number){
 //Start Function
 function startFunction(){
   startCount = startCount + 1;
-
 
   //BUGG movement and starting position.
   if (startCount > 1 ||  startCount <1){
@@ -116,10 +115,14 @@ function startFunction(){
 
 
 
+//The startFucntion should call the bugg Constructor (making a new bug).
+//Bugg movement should be moved to the Bugg Constructor. 
+//
+//
+//
 // NEXT
 // add two buggs to the window
 // make movespeed a part of each buggs object so that dif buggs can have variable speed
-
 
 // TODO
 // add elements that affect time, move speed, etc.
