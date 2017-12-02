@@ -1,5 +1,5 @@
 const MoveDist = 10;
-const BaseSpeed = 200;
+const BaseSpeed = 100;
 const BuggPopulation = 10;
 
 let buggC = document.getElementsByClassName("bugg");
@@ -34,14 +34,11 @@ function Bugg (name){
   console.log(this.stats);
 }
 
-
 //RNG Controller
 function rngControl(number){
   let newNum = Math.floor((Math.random() * number) + 1);
   return newNum;
 }
-
-
 
 //Controls the random movement
 function buggMovement(buggID){
