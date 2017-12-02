@@ -1,14 +1,12 @@
 const MoveDist = 10;
 const BaseSpeed = 200;
+const BuggPopulation = 10;
 
 let buggC = document.getElementsByClassName("bugg");
 let yPos = document.getElementById("yPos");
 let xPos = document.getElementById("xPos");
 let windowDim = document.getElementById("windowDim");
 let buggField = document.getElementById("buggField");
-// let viewportOffset = bugg.getBoundingClientRect();
-// let buggXPos = viewportOffset.top;
-// let buggYPos = viewportOffset.left;
 let x = window.innerWidth;
 let y = window.innerHeight;
 let buggCount = 0;
@@ -16,9 +14,6 @@ let startCount = 0;
 let buggyCount = 0;
 let newBugg = 1;
 windowDim.innerHTML = "Width:  " + x +"  Height:  " + y;
-
-let addBug;
-
 
 //Bugg Constuctor
 function Bugg (name){
@@ -31,7 +26,6 @@ function Bugg (name){
   rngY = rngControl(y);
   rngSpeedModifier = rngControl(10);
   buggCount = buggCount + 1;
-  console.log("Bugg count", buggCount);
   this.name = name;
   this.number = buggCount;
   this.buggSpeed = BaseSpeed * (rngSpeedModifier/10);
@@ -47,27 +41,24 @@ function rngControl(number){
   return newNum;
 }
 
+
+
 //Controls the random movement
 function buggMovement(buggID){
-  buggID = document.getElementById(buggID);
-  // bugg = buggID;
-  console.log("this", bugg);
+  buggEL = buggID;
+  let buggNew = document.getElementById(buggEL);
   let moveSpeed = BaseSpeed;
-  //set the random position inside start
 
-  buggYPos = rngControl(x);
-  buggXPos= rngControl(y);
+  //set the random position inside start
+  let buggYPos = rngControl(x);
+  let buggXPos = rngControl(y);
   console.log(buggXPos + ':' + buggYPos);
 
   setInterval(function(){
-
     let rngMove = rngControl(4);//keep this inside the setInterval function.
-    // //this just logs
-    // yPos.innerHTML = "Y pos: " + buggYPos;
-    // xPos.innerHTML = "X pos: " + buggXPos;
 
     //will stop everything if the bugg manages to go beyond the boundaries
-    //may want to expand this and move into a fucntion
+    //may want to expand this and move into a function
     if (buggYPos >= x || buggYPos <= 0){
       return 0;
     }
@@ -81,28 +72,28 @@ function buggMovement(buggID){
       }else{
         buggYPos = buggYPos - MoveDist;
       }
-      buggID.setAttribute("style","left:" + (buggYPos) + "px; top:"+ buggXPos+"px; border-left:4px solid yellow;");
+      buggNew.setAttribute("style","left:" + (buggYPos) + "px; top:"+ buggXPos+"px; border-left:4px solid yellow;");
     }else if (rngMove === 2){
       if (buggYPos >= x - 50){
         buggYPos = buggYPos - MoveDist;
       }else{
         buggYPos = buggYPos + MoveDist;
       }
-      buggID.setAttribute("style","left:" + (buggYPos) + "px; top:"+ buggXPos+"px; border-right:4px solid yellow;");
+      buggNew.setAttribute("style","left:" + (buggYPos) + "px; top:"+ buggXPos+"px; border-right:4px solid yellow;");
     }else if (rngMove === 3){
       if (buggXPos >= y - 50){
         buggXPos = buggXPos - MoveDist;
       }else {
         buggXPos = buggXPos + MoveDist;
       }
-      buggID.setAttribute("style","top:" + (buggXPos) + "px; left:"+ buggYPos+"px; border-bottom:4px solid yellow;");
+      buggNew.setAttribute("style","top:" + (buggXPos) + "px; left:"+ buggYPos+"px; border-bottom:4px solid yellow;");
     }else if (rngMove === 4){
       if (buggXPos <= 50){
         buggXPos = buggXPos + MoveDist;
       }else{
         buggXPos = buggXPos - MoveDist;
       }
-      buggID.setAttribute("style","top:"+ (buggXPos) + "px; left:"+ buggYPos+"px; border-top:4px solid yellow;");
+      buggNew.setAttribute("style","top:"+ (buggXPos) + "px; left:"+ buggYPos+"px; border-top:4px solid yellow;");
     }
 
   }, moveSpeed);
@@ -110,24 +101,21 @@ function buggMovement(buggID){
 
 //Start Function
 function startFunction(count){
-//Start should get get an amount of bugs to place and initialize them all.
-// at start, this should create a new bug with a unique id
-  count = 3;
+//BuggPopulation will eventually be decided by the user.
+  count = BuggPopulation;
+
   startCount = startCount + 1;
   //BUGG movement and starting position.
   if (startCount > 1 ||  startCount <1){
     console.log("You've already started.");
   }else{
-    // let bugg = document.getElementById("bugg");
-    buggField.innerHTML = '<canvas id="bugg" class="bugg"></canvas>';
     let newBugg;
      for (let i = 1; i<=count; i++){
        newBugg = '<canvas id="bugg' + i +  '" class="bugg"></canvas>';
        buggField.insertAdjacentHTML('beforeend', newBugg);
-       new Bugg(i);
+       new Bugg("bugg".concat(i));
        buggMovement("bugg".concat(i));
     }
-    // buggMovement();
   }
 }
 
