@@ -1,5 +1,5 @@
 const MoveDist = 10;
-const BaseSpeed = 700;
+const BaseSpeed = 600;
 const BuggPopulation = 10;
 
 let buggC = document.getElementsByClassName("bugg");
