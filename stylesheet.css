@@ -16,14 +16,5 @@ width:100vw;*/
   border-radius:50%;
   background-color: red;
   position:absolute;
-  top:50%;
-  left:50%;
-}
-
-.food {
-  border-radius:50%;
-  background-color: yellow;
-  position:absolute;
-  top:30%;
-  left:30%;
+  top:-1000px;
 }
