@@ -6,10 +6,18 @@ width:100vw;
 }
 
 .bugg {
+  color:red;
   height:30px;
   width:30px;
   border-radius:50%;
   background-color: rgb(51, 131, 28);
   position:absolute;
   top:-1000px;
+}
+.buggMark{
+  text-align:center;
+  position:relative;
+  top:-12px;
+  font-style: bold;
+  font-size: 1.2em;
 }

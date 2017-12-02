@@ -26,11 +26,13 @@ function Bugg (name){
   rngY = rngControl(y);
   rngSpeedModifier = rngControl(10);
   buggCount = buggCount + 1;
+
   this.name = name;
   this.number = buggCount;
   this.buggSpeed = BaseSpeed * (rngSpeedModifier/10);
+  this.health = rngControl(10);
   this.startXY = [rngX, rngY];
-  this.stats = name +'s stats are: Speed: ['+ this.buggSpeed +'], ID:['+ this.number+'], XY POS: ['+ this.startXY + ']';
+  this.stats = name +'s stats are: Speed: ['+ this.buggSpeed +'], ID:['+ this.number+'], XY POS: ['+ this.startXY + '],  health: ['+ this.health + ']';
   console.log(this.stats);
   document.getElementById("count").innerHTML = buggCount;
 }
@@ -55,17 +57,16 @@ function buggMovement(buggID){
   console.log(buggXPos + ':' + buggYPos);
 
   setInterval(function(){
-    let rngMove = rngControl(4);//keep this inside the setInterval function.
-
-    //will stop everything if the bugg manages to go beyond the boundaries
-    //may want to expand this and move into a function
+    //keep this inside the setInterval function.
+    let rngMove = rngControl(4);
+    //stops everything if a bugs goes out of bounds
     if (buggYPos >= x || buggYPos <= 0){
       return 0;
     }
     if (buggXPos >= y || buggXPos <= 0){
       return 0;
     }
-    //convert this to a switch statement
+
     if (rngMove === 1){
       if (buggYPos <= 50){
         buggYPos = buggYPos + MoveDist;
@@ -101,38 +102,16 @@ function buggMovement(buggID){
 
 //Start Function
 function startFunction(count){
-//BuggPopulation will eventually be decided by the user.
   count = BuggPopulation;
-
   startCount = startCount + 1;
-  //BUGG movement and starting position.
   if (startCount > 1 ||  startCount <1){
     console.log("You've already started.");
   }else{
     let newBugg;
      for (let i = 1; i<=count; i++){
-       newBugg = '<canvas id="bugg' + i +  '" class="bugg"></canvas>';
+       newBugg = '<div id="bugg' + i +  '" class="bugg"><p class="buggMark">'+i+'</p></div>';
        buggField.insertAdjacentHTML('beforeend', newBugg);
        buggMovement("bugg".concat(i));
     }
   }
 }
-
-//Buggmovement needs to be called for each instance of bugg. Maybe call it inside the constructor or seperate function that
-
-//The startFucntion should call the bugg Constructor (making a new bug).
-//Bugg movement should be moved to the Bugg Constructor.
-//
-//
-//
-// NEXT
-// add two buggs to the window
-// make movespeed a part of each buggs object so that dif buggs can have variable speed
-
-// TODO
-// add elements that affect time, move speed, etc.
-// add more than one bugg at a time
-// Make rngMove out of 100(or more) and divide by 4 to allow for more granularity and changes.
-// -- maybe add 8 way direction rather than just 4 way
-//Add "food" and a sense for the bugg that increases it chances of finding it
-//Add a life timer to the bugg. Food will increase the life(time) of the bugg.
