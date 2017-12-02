@@ -1,5 +1,5 @@
 const MoveDist = 10;
-const BaseSpeed = 100;
+const BaseSpeed = 700;
 const BuggPopulation = 10;
 
 let buggC = document.getElementsByClassName("bugg");
@@ -32,6 +32,7 @@ function Bugg (name){
   this.startXY = [rngX, rngY];
   this.stats = name +'s stats are: Speed: ['+ this.buggSpeed +'], ID:['+ this.number+'], XY POS: ['+ this.startXY + ']';
   console.log(this.stats);
+  document.getElementById("count").innerHTML = buggCount;
 }
 
 //RNG Controller
@@ -42,9 +43,11 @@ function rngControl(number){
 
 //Controls the random movement
 function buggMovement(buggID){
+  let buggMade = buggID;
   buggEL = buggID;
+  buggMade = new Bugg(buggID);
   let buggNew = document.getElementById(buggEL);
-  let moveSpeed = BaseSpeed;
+  let moveSpeed = buggMade.buggSpeed;
 
   //set the random position inside start
   let buggYPos = rngControl(x);
@@ -69,28 +72,28 @@ function buggMovement(buggID){
       }else{
         buggYPos = buggYPos - MoveDist;
       }
-      buggNew.setAttribute("style","left:" + (buggYPos) + "px; top:"+ buggXPos+"px; border-left:4px solid yellow;");
+      buggNew.setAttribute("style","left:" + (buggYPos) + "px; top:"+ buggXPos+"px; border-left:4px solid rgb(132, 238, 159)");
     }else if (rngMove === 2){
       if (buggYPos >= x - 50){
         buggYPos = buggYPos - MoveDist;
       }else{
         buggYPos = buggYPos + MoveDist;
       }
-      buggNew.setAttribute("style","left:" + (buggYPos) + "px; top:"+ buggXPos+"px; border-right:4px solid yellow;");
+      buggNew.setAttribute("style","left:" + (buggYPos) + "px; top:"+ buggXPos+"px; border-right:4px solid rgb(132, 238, 159)");
     }else if (rngMove === 3){
       if (buggXPos >= y - 50){
         buggXPos = buggXPos - MoveDist;
       }else {
         buggXPos = buggXPos + MoveDist;
       }
-      buggNew.setAttribute("style","top:" + (buggXPos) + "px; left:"+ buggYPos+"px; border-bottom:4px solid yellow;");
+      buggNew.setAttribute("style","top:" + (buggXPos) + "px; left:"+ buggYPos+"px; border-bottom:4px solid rgb(132, 238, 159)");
     }else if (rngMove === 4){
       if (buggXPos <= 50){
         buggXPos = buggXPos + MoveDist;
       }else{
         buggXPos = buggXPos - MoveDist;
       }
-      buggNew.setAttribute("style","top:"+ (buggXPos) + "px; left:"+ buggYPos+"px; border-top:4px solid yellow;");
+      buggNew.setAttribute("style","top:"+ (buggXPos) + "px; left:"+ buggYPos+"px; border-top:4px solid rgb(132, 238, 159)");
     }
 
   }, moveSpeed);
@@ -110,7 +113,6 @@ function startFunction(count){
      for (let i = 1; i<=count; i++){
        newBugg = '<canvas id="bugg' + i +  '" class="bugg"></canvas>';
        buggField.insertAdjacentHTML('beforeend', newBugg);
-       new Bugg("bugg".concat(i));
        buggMovement("bugg".concat(i));
     }
   }
