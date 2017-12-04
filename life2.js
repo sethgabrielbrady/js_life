@@ -24,6 +24,11 @@ function Bugg (name){
 
   rngX = rngControl(x);
   rngY = rngControl(y);
+  buggR = rngControl(255);
+  buggG = rngControl(255);
+  buggB = rngControl(255);
+
+
   rngSpeedModifier = rngControl(10);
   buggCount = buggCount + 1;
 
@@ -32,6 +37,7 @@ function Bugg (name){
   this.buggSpeed = BaseSpeed * (rngSpeedModifier/10);
   this.health = rngControl(10);
   this.startXY = [rngX, rngY];
+  this.buggColor ="rgb("+buggR+","+ buggG+","+ buggB+");";
   this.stats = name +'s stats are: Speed: ['+ this.buggSpeed +'], ID:['+ this.number+'], XY POS: ['+ this.startXY + '],  health: ['+ this.health + ']';
   console.log(this.stats);
   document.getElementById("count").innerHTML = buggCount;
@@ -50,7 +56,7 @@ function buggMovement(buggID){
   buggMade = new Bugg(buggID);
   let buggNew = document.getElementById(buggEL);
   let moveSpeed = buggMade.buggSpeed;
-
+  let bColor = buggMade.buggColor;
   //set the random position inside start
   let buggYPos = rngControl(x);
   let buggXPos = rngControl(y);
@@ -73,28 +79,28 @@ function buggMovement(buggID){
       }else{
         buggYPos = buggYPos - MoveDist;
       }
-      buggNew.setAttribute("style","left:" + (buggYPos) + "px; top:"+ buggXPos+"px; border-left:4px solid rgb(132, 238, 159)");
+      buggNew.setAttribute("style","left:" + (buggYPos) + "px; top:"+ buggXPos+"px; border-left:4px solid white; background-color:"+bColor+'"');
     }else if (rngMove === 2){
       if (buggYPos >= x - 50){
         buggYPos = buggYPos - MoveDist;
       }else{
         buggYPos = buggYPos + MoveDist;
       }
-      buggNew.setAttribute("style","left:" + (buggYPos) + "px; top:"+ buggXPos+"px; border-right:4px solid rgb(132, 238, 159)");
+      buggNew.setAttribute("style","left:" + (buggYPos) + "px; top:"+ buggXPos+"px; border-right:4px solid white;  background-color:"+bColor+'"');
     }else if (rngMove === 3){
       if (buggXPos >= y - 50){
         buggXPos = buggXPos - MoveDist;
       }else {
         buggXPos = buggXPos + MoveDist;
       }
-      buggNew.setAttribute("style","top:" + (buggXPos) + "px; left:"+ buggYPos+"px; border-bottom:4px solid rgb(132, 238, 159)");
+      buggNew.setAttribute("style","top:" + (buggXPos) + "px; left:"+ buggYPos+"px; border-bottom:4px solid white; background-color:"+bColor+'"');
     }else if (rngMove === 4){
       if (buggXPos <= 50){
         buggXPos = buggXPos + MoveDist;
       }else{
         buggXPos = buggXPos - MoveDist;
       }
-      buggNew.setAttribute("style","top:"+ (buggXPos) + "px; left:"+ buggYPos+"px; border-top:4px solid rgb(132, 238, 159)");
+      buggNew.setAttribute("style","top:"+ (buggXPos) + "px; left:"+ buggYPos+"px; border-top:4px solid white; background-color:"+bColor+'"');
     }
 
   }, moveSpeed);
