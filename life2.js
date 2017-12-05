@@ -27,8 +27,6 @@ function Bugg (name){
   buggR = rngControl(255);
   buggG = rngControl(255);
   buggB = rngControl(255);
-
-
   rngSpeedModifier = rngControl(10);
   buggCount = buggCount + 1;
 
@@ -38,7 +36,13 @@ function Bugg (name){
   this.health = rngControl(10);
   this.startXY = [rngX, rngY];
   this.buggColor ="rgb("+buggR+","+ buggG+","+ buggB+");";
-  this.stats = name +'s stats are: Speed: ['+ this.buggSpeed +'], ID:['+ this.number+'], XY POS: ['+ this.startXY + '],  health: ['+ this.health + ']';
+  this.stats = name +'s stats are: Speed: ['+
+              this.buggSpeed +'], ID:['+
+              this.number+'], XY POS: ['+
+              this.startXY + '],  health: ['+
+              this.health + '], color: ['+
+              this.buggColor +
+              ']';
   console.log(this.stats);
   document.getElementById("count").innerHTML = buggCount;
 }
