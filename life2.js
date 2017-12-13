@@ -36,6 +36,8 @@ function Bugg (name){
   this.health = rngControl(10);
   this.startXY = [rngX, rngY];
   this.buggColor ="rgb("+buggR+","+ buggG+","+ buggB+");";
+
+  
   this.stats = name +'s stats are: Speed: ['+
               this.buggSpeed +'], ID:['+
               this.number+'], XY POS: ['+
